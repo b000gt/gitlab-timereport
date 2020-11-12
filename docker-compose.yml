@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+  gitlab-timereport:
+    build: 
+      context: ./gtr
+      dockerfile: dockerfile
+    command: >
+      timereport.py 
+      --access-token=HuWgBqLgdTvmRJQayt9N
+      --project=2189
+    volumes:
+      - ./gtr-data:/figures
