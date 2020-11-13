@@ -1,18 +1,24 @@
 import re
+import datetime
+from dateutil.parser import parse
 
 def parse_time(timestring):
     minutes_list = re.findall(r"((\d+)m)", timestring)
     hours_list = re.findall(r"((\d+)h)", timestring)
-    minutes = 0
+    hours = 0
 
     if len(minutes_list) > 0:
-        minutes += int(minutes_list[0][1])
+        hours += int(minutes_list[0][1]) / 60
     if len(hours_list):
-        minutes += int(hours_list[0][1]) * 60
+        hours += int(hours_list[0][1])
 
     if timestring.startswith('added'):
-        return minutes
+        return hours
     elif timestring.startswith('subtracted'):
-        return -minutes
+        return -hours
     else:
         return 0
+
+def parse_week(datestring):
+    date = parse(datestring).date() - datetime.timedelta(days=1)
+    return date.isocalendar()[1]

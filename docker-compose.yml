@@ -9,4 +9,4 @@ services:
       --access-token=HuWgBqLgdTvmRJQayt9N
       --project=2189
     volumes:
-      - ./gtr-data:/figures
+      - ./gtr-data:/images
